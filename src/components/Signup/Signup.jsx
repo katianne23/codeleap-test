@@ -15,11 +15,14 @@ export class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Username:", this.state.username);
-   localStorage.setItem('username', this.state.username);
+    const username = this.state.username;
 
-    if (this.props.onSignup) {
-       this.props.navigate('/posts');
+    localStorage.setItem("username", username);
+
+    if (this.props.navigate) {
+      this.props.navigate("/posts");
+    } else {
+      window.location.href = "/posts";
     }
   };
 
@@ -41,21 +44,22 @@ export class Signup extends React.Component {
               value={username}
               onChange={this.handleUserNameChange}
             />
+            <div className="button">
+              <button
+                type="submit"
+                disabled={isButtonDisabled}
+                style={{
+                  opacity: isButtonDisabled ? 0.5 : 1,
+                  cursor: isButtonDisabled ? "not-allowed" : "pointer",
+                }}
+              >
+                Enter
+              </button>
+            </div>
           </form>
-          <div className="button">
-            <button
-              onClick={this.handleSubmit}
-              disabled={isButtonDisabled}
-              style={{
-                opacity: isButtonDisabled ? 0.5 : 1,
-                cursor: isButtonDisabled ? "not-allowed" : "pointer",
-              }}
-            >
-              Enter
-            </button>
-          </div>
         </div>
       </section>
     );
   }
 }
+
