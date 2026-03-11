@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# CodeLeap Network – Frontend Challenge
+![site](https://github.com/katianne23/codeleap-test/blob/main/public/preeview.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 💻 This project is a frontend application built with React that allows users to create, view, and edit posts in a simple social network environment..
 
-## Available Scripts
+The application was developed as part of a technical challenge, focusing on clean architecture, component organization, API integration, and good user experience practices.
 
-In the project directory, you can run:
+[Clique aqui para acessar](https://codeleap-test-lac.vercel.app/)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎯 Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- JavaScript (ES6+)
+- Axios
+- CSS
+- LocalStorage
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application provides the following features:
+### User Registration
+Users must enter a username to access the application.
+- The username is stored in LocalStorage
+- After submitting the username, the user is redirected to the posts page
 
-### `npm run build`
+### Create Post
+Users can create a new post containing:
+- Title
+- Content
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Rules implemented:
+- Both fields are required
+- The submit button is disabled when fields are empty
+- The post is sent to the API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+###  Edit Post
+Users can edit an existing post.
+Features:
+- Modal editing interface
+- Post update using PATCH request
+- Automatic refresh of the post list after editing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Components
+### Signup
+Responsible for user registration.
+Responsibilities
+- Capture the username
+- Store the username in localStorage
+- Redirect the user to the posts page
 
-### `npm run eject`
+### State
+- username
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Flow
+- User enters a username
+- Username is stored in LocalStorage
+- User is redirected to the posts page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### CreatePost
+- Component responsible for creating new posts.
+- 
+#### State
+- title
+- content
+- username
+  
+#### Responsibilities
+- Retrieve username from LocalStorage
+- Send post data to the API
+- Clear the form after submission
+- Refresh the post list
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Request Body
+{
+  username: string,
+  title: string,
+  content: string
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### API Request
+POST /
 
-## Learn More
+### EditPost
+Component responsible for editing existing posts.
+-  State
+- title
+- content
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+####  Responsibilities
+- Display an edit modal
+- Allow editing of title and content
+- Update the post through the API
+- Reload the posts list after updating
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### API Request
+- PATCH /:id
 
-### Code Splitting
+### Delete Post
+Users can delete their posts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Features:
+- Delete button available in each post
+- Confirmation modal before deletion
+- Removes the post using an API request
+- Refreshes the list after deletion
 
-### Analyzing the Bundle Size
+#### API request:
+DELETE /:id
+  
+### Application Flow
+Signup
+   ↓
+Posts Page
+   ↓
+Create Post
+   ↓
+Posts List
+   ↓
+Edit Post
+   ↓
+Delet Post
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Implemented Validations
+- Required fields
+- Disabled buttons when inputs are empty
+- Basic error handling for API requests
+- Username persistence with LocalStorage
 
-### Advanced Configuration
+### Running the Project
+```
+1 Clone the repository
+git clone https://github.com/katianne23/codeleap-test.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2 Navigate to the project folder
+cd codeleap-test
 
-### Deployment
+3 Install dependencies
+npm install
+or
+yarn install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4 Start the application
+npm start
+or
+npm run dev
+```
 
-### `npm run build` fails to minify
+###Possible Improvements
+- If more time were available, the following improvements could be implemented:
+- Post deletion feature
+- Pagination for posts
+- Improved API error handling
+- Loading states
+- Unit tests
+- Custom React hooks
+- Migration to TypeScript
+- Better responsive design
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## :memo: Licença
+
+Esse projeto está sob a licença MIT.
+
+Katianne Araújo
+
+---
